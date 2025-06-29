@@ -28,3 +28,20 @@ FROM sf_restaurant_health_violations
 WHERE business_name = 'Roxanne Cafe'
 GROUP BY violation_year
 ORDER BY violation_year
+
+
+----Compare each employee's salary with the average salary of the corresponding
+----department.Output the department, first name, and salary of employees along 
+----with the average salary of that department.
+WITH dept_avg AS ( SELECT department, AVG(salary) AS avg_salary 
+FROM employee 
+GROUP BY department)
+SELECT e.department, 
+e.first_name,
+e.salary,
+d.avg_salary
+FROM employee e 
+JOIN dept_avg d ON e.department = d.department
+order by  e.department
+
+
