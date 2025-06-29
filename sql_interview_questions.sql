@@ -14,3 +14,17 @@ GROUP BY company_name)
 SELECT brand_2020.company_name, products-products_ AS net_products
 FROM brand_2020 JOIN brand_2019
 ON brand_2020.company_name = brand_2019.company_name
+
+
+
+
+--Count the total number of violations that occurred at 
+--'Roxanne Cafe' for each year,based on the inspection date. 
+--Output the year and the corresponding number of violations 
+--in ascending order of the year.
+SELECT DATE_PART('year', inspection_date) AS violation_year, 
+COUNT(violation_id) AS no_of_violations
+FROM sf_restaurant_health_violations
+WHERE business_name = 'Roxanne Cafe'
+GROUP BY violation_year
+ORDER BY violation_year
